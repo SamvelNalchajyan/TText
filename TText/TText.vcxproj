@@ -142,6 +142,7 @@
     <ClCompile Include="TText.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="TStack.h" />
     <ClInclude Include="TText.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
