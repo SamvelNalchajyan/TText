@@ -9,8 +9,10 @@ int main()
 {
 	setlocale(LC_CTYPE, "Russian");
 	/*...........................................*/
+	TTextLink::InitMem();
 	TText t;
-	t.Read("..\FILE.txt");
+	t.Read("../FILE_in.txt");
+	t.Write("../FILE_out.txt");
 	/*...........................................*/
 	system("pause");
 	return 0;

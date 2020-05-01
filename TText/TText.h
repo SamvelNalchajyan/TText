@@ -5,6 +5,17 @@
 #include <fstream>
 #include "TStack.h"
 #define LinkSize 81
+#define MemSize 100
+
+class TTextLink;
+class TText;
+
+struct TTextMem
+{
+	TTextLink* pFirst;
+	TTextLink* pLast;
+	TTextLink* pFree;
+};
 
 class TTextLink
 {
@@ -12,8 +23,17 @@ public:
 	TTextLink* pNext;
 	TTextLink* pDown;
 	char str[LinkSize];
+	static TTextMem MemHead;
+	int rec;
 
 	TTextLink(char* C = NULL, TTextLink* _pNext = NULL, TTextLink* _pDown = NULL);
+	~TTextLink() {};
+
+	static void InitMem(int size = MemSize);
+	static void PrintFreeLinks();
+	void* operator new(size_t size);
+	void operator delete(void* p);
+	static void MemClean(TText& txt);
 };
 
 class TText
@@ -42,4 +62,12 @@ public:
 
 	TTextLink* ReadRec(std::ifstream& ifs);
 	void Read(std::string fn);
+	void WriteRec(std::ofstream& ofs, TTextLink* p);
+	void Write(std::string fn);
+	void PrintRec(TTextLink* p);
+	void Print();
+
+	int Reset();
+	int IsEnd();
+	int GoNext();
 };
